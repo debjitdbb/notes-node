@@ -70,6 +70,24 @@ var removeNote = (title) =>
 	return notes.length !== filteredNotes.length;
 };
 
+var removeAll = () =>
+{
+	var notes = fetchNotes();
+	var noteLength = notes.length;
+	 if(noteLength === 0)
+	 {
+	 	console.log('No note found');
+	 }
+	else
+	{
+		if(noteLength == 1)
+			console.log('Removing ' +noteLength+' note.');
+		else
+			console.log('Removing ' +noteLength+' notes.');
+		fs.writeFileSync('notes-data.json',"[]");
+	}
+};
+
 var logNote = (note) =>
 {
 	console.log('--');
@@ -82,5 +100,6 @@ module.exports = {
 	getAll,
 	getNote,
 	removeNote,
-	logNote
+	logNote,
+	removeAll
 };
