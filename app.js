@@ -28,6 +28,7 @@ const argv = yargs
 .command('remove', 'Remove an existing note', {
 	title: titleOptions
 })
+.command('remove_all', 'Remove all the notes')
 .help()
 .argv;
 var command = argv._[0];
@@ -39,7 +40,7 @@ if(command === 'add')
 	var note = notes.addNote(argv.title, argv.body);
 	if(note)
 	{
-		console.log('Node created');
+		console.log('Note created');
 		notes.logNote(note);
 	}
 }
@@ -81,6 +82,10 @@ else if(command === 'remove')
 	var noteRemoved = notes.removeNote(argv.title);
 	var message = noteRemoved ? 'Note was removed' : 'Note not found';
 	console.log(message);
+}
+else if(command === 'remove_all')
+{
+	notes.removeAll();
 }
 else
 {
